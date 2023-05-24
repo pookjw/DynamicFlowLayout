@@ -11,6 +11,11 @@ import UIKit
 final class ViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var viewModel: ViewModel!
+    private var task: Task<Void, Never>?
+    
+    deinit {
+        task?.cancel()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +51,7 @@ final class ViewController: UIViewController {
         self.collectionView = collectionView
         self.viewModel = viewModel
         
-        Task.detached { [viewModel] in
+        task = .detached { [viewModel] in
             await viewModel.loadDataSource()
         }
     }
