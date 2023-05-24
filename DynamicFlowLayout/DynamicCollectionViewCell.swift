@@ -10,10 +10,15 @@ import UIKit
 @MainActor
 final class DynamicCollectionViewCell: UICollectionViewCell {
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let layoutAttributes: UICollectionViewLayoutAttributes = layoutAttributes
         let size: CGSize = contentView.systemLayoutSizeFitting(layoutAttributes.size, withHorizontalFittingPriority: .fittingSizeLevel, verticalFittingPriority: .fittingSizeLevel)
         
-        layoutAttributes.size = (size == .zero) ? layoutAttributes.size : size
-        return layoutAttributes
+        guard size != .zero else {
+            return super.preferredLayoutAttributesFitting(layoutAttributes)
+        }
+        
+        let finalLayoutAttributes: UICollectionViewLayoutAttributes = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
+        finalLayoutAttributes.size = size
+        
+        return finalLayoutAttributes
     }
 }
