@@ -12,11 +12,6 @@ final class ViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var viewModel: ViewModel!
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
