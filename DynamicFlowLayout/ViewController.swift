@@ -34,7 +34,7 @@ final class ViewController: UIViewController {
             
             cell.configurationUpdateHandler = { cell, state in
                 var backgroundConfiguration: UIBackgroundConfiguration = .clear()
-                backgroundConfiguration.backgroundColor = (state.isSelected || state.isHighlighted) ? .secondarySystemBackground : .clear
+                backgroundConfiguration.backgroundColor = (state.isSelected || state.isHighlighted) ? .systemPurple : .systemPurple.withAlphaComponent(0.1)
                 cell.backgroundConfiguration = backgroundConfiguration
             }
         }

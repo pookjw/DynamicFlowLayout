@@ -17,7 +17,7 @@ actor ViewModel {
     func loadDataSource() async {
         var snapshot: NSDiffableDataSourceSnapshot<Int, String> = .init()
         snapshot.appendSections([.zero])
-        snapshot.appendItems(["💁🏻‍♀️", "🐣", "🐥", "🐤"], toSection: .zero)
+        snapshot.appendItems(["💁🏻‍♀️", "🐣🐣", "🐥🐥🐥", "🐤🐤🐤🐤"], toSection: .zero)
         await dataSource.apply(snapshot)
     }
 }
