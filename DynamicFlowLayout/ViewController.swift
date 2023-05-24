@@ -10,7 +10,7 @@ import UIKit
 @MainActor
 final class ViewController: UIViewController {
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Int, String>!
+    private var viewModel: ViewModel!
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -45,16 +45,15 @@ final class ViewController: UIViewController {
             return cell
         }
         
+        let viewModel: ViewModel = .init(dataSource: dataSource)
+        
         view.addSubview(collectionView)
         
         self.collectionView = collectionView
-        self.dataSource = dataSource
+        self.viewModel = viewModel
         
-        Task.detached { [dataSource] in
-            var snapshot: NSDiffableDataSourceSnapshot<Int, String> = .init()
-            snapshot.appendSections([.zero])
-            snapshot.appendItems(["💁🏻‍♀️", "🐣", "🐥", "🐤"], toSection: .zero)
-            await dataSource.apply(snapshot)
+        Task.detached { [viewModel] in
+            await viewModel.loadDataSource()
         }
     }
 }
