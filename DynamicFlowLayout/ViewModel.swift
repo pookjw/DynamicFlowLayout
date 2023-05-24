@@ -10,7 +10,6 @@ import UIKit
 actor ViewModel {
     private let dataSource: UICollectionViewDiffableDataSource<Int, String>
     
-    
     init(dataSource: UICollectionViewDiffableDataSource<Int, String>) {
         self.dataSource = dataSource
     }

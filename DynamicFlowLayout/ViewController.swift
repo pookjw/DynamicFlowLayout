@@ -22,7 +22,6 @@ final class ViewController: UIViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.contentInsetAdjustmentBehavior = .always
-        collectionView.delegate = self
         
         let cellRegistration: UICollectionView.CellRegistration<DynamicCollectionViewCell, String> = .init { cell, indexPath, itemIdentifier in
             let contentConfiguration: ContentConfiguration = .init(text: itemIdentifier)
@@ -51,12 +50,4 @@ final class ViewController: UIViewController {
             await viewModel.loadDataSource()
         }
     }
-}
-
-extension ViewController: UICollectionViewDelegate {
-    
-}
-
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    
 }
